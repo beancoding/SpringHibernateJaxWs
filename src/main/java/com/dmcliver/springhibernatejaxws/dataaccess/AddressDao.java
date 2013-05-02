@@ -1,12 +1,11 @@
 package com.dmcliver.springhibernatejaxws.dataaccess;
 
-import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 import com.dmcliver.springhibernatejaxws.domain.Address;
+import com.dmcliver.springhibernatejaxws.domain.Person;
 
 public interface AddressDao {
 
-	@Transactional
-	public abstract void save(Address ad);
-
+	public abstract List<Person> findByAddress(Address add);
 }

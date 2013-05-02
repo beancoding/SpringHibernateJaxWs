@@ -4,6 +4,7 @@
 <hibernate-configuration>
 	<session-factory>
 
+		  <property name="hbm2ddl.auto" >create</property>
 		<property name="dialect">org.hibernate.dialect.PostgreSQL82Dialect</property> 
 		<property name="show_sql">true</property> 
 

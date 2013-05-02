@@ -1,5 +1,8 @@
 package com.dmcliver.springhibernatejaxws.dataaccess;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,7 @@ import com.dmcliver.springhibernatejaxws.domain.Address;
 import com.dmcliver.springhibernatejaxws.domain.Person;
 
 @Repository
-public class AddressDaoImpl implements AddressDao {
+public class AddressDaoImpl implements AddressDao{
 
 	private SessionFactory sessionFactory;
 
@@ -21,8 +24,13 @@ public class AddressDaoImpl implements AddressDao {
 
 	@Override
 	@Transactional
-	public void save(Address ad){
+	public List<Person> findByAddress(Address add){
+		
 		Session sess = sessionFactory.getCurrentSession();
-		sess.save(ad);
+		Query query = sess.createQuery("select a.person from Address a where a.addressPk.number =: number and a.addressPk.street =: street and a.addressPk.area =: area");
+		query.setParameter("number", add.getAddressPk().getNumber());
+		query.setParameter("street", add.getAddressPk().getStreet());
+		query.setParameter("area", add.getAddressPk().getArea());
+		return query.list();
 	}
 }
