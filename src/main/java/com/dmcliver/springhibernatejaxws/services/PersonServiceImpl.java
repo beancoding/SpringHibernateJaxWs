@@ -5,23 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dmcliver.springhibernatejaxws.dataaccess.AddressDao;
-import com.dmcliver.springhibernatejaxws.domain.Address;
+import com.dmcliver.springhibernatejaxws.dataaccess.PersonDao;
 import com.dmcliver.springhibernatejaxws.domain.Person;
+import com.dmcliver.springhibernatejaxws.domain.Profession;
 
 @Service
 public class PersonServiceImpl implements PersonService{
 
-	private AddressDao addressDao;
-	
 	@Autowired
-	public PersonServiceImpl(AddressDao addressDao) {
-		this.addressDao = addressDao;
-	}
-
+	private PersonDao personDao;
+	
 	@Override
-	public List<Person> findByAddress(Address address) {
+	public List<Person> findByProfession(Profession profession) {
 		
-		return addressDao.findByAddress(address);
+		return personDao.findByProfession(profession);
 	}
 }

@@ -7,8 +7,8 @@ import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.dmcliver.springhibernatejaxws.domain.Address;
 import com.dmcliver.springhibernatejaxws.domain.Person;
+import com.dmcliver.springhibernatejaxws.domain.Profession;
 import com.dmcliver.springhibernatejaxws.services.PersonService;
 
 // This will be the port name appended with the word port at the end of the name
@@ -21,7 +21,7 @@ public class PersonServiceEndpoint{
 	 private PersonService personService;
 
 	@WebMethod
-	public List<Person> findByAddress(Address address){
-		return personService.findByAddress(address);
+	public List<Person> findByProfession(Profession profession){
+		return personService.findByProfession(profession);
 	}
 }
